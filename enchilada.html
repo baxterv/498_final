@@ -1,0 +1,147 @@
+<html>
+<head>
+  <title> Recipe Remix </title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> 
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<style>
+/*style*/
+body {
+    background-color: #F07D4D;
+
+  .bar {
+    fill: steelblue;
+  }
+
+  .bar:hover {
+    fill: brown;
+  }
+
+  .axis {
+    font: 10px sans-serif;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+
+  .x.axis path {
+    display: none;
+  }
+}
+
+#content {
+  margin-left:  200px;
+  background-color: #D9FFCC;
+  background-size: 100% 100%;
+  height:150%;
+}
+#recipe {
+  background-image: url("images/enchiladaBackground.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  float: left;
+  width: 50%;
+  height:150%;
+}
+#footer {
+  clear: both ;
+}
+#header {
+  text-align: center ;
+}
+}
+</style>
+</head>
+
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="cookie.js"></script>
+
+<div id="layout">
+  <div id="header">
+    <h1>This is a demonstration of Recipe Remix. Breakfast Enchiladas</h1>
+  </div>
+  
+  <div id="recipe">Recipe</div>
+  <div id="content">Here is the D3 visualization for our page.
+    <div id="update">Recipe Original to New
+        <table style="width:40%">
+          <tr>
+            <th>Original Recipe</th>
+            <th>Updated Recipe</th> 
+          </tr>
+          <tr>
+           <td> 1 lb bulk breakfast sausage</td>
+           <td> 
+            <select id="myselectionform">
+                <option value="RegularIngredient">Ingredient1</option>
+                <option value="replacement1">Replacement1</option>
+                <option value="replacement2">Replacement2</option>
+            </select>
+           <!-- Dropdown -->
+            <script>
+             var ingredient = "flour"
+              document.getElementById("myselectionform").onchange = function(){
+              d3.select("#mytype").attr("value", this.value);
+              filterType(this.value, ingredient);
+              }
+          </script>
+           </td>
+         </tr>
+        <tr>
+           <td>1 medium red pepper, chopped</td>
+           <td>1 medium red pepper, chopped</td>
+         </tr>
+         <tr>
+           <td>1 small onion, chopped</td>
+           <td>1 small onion, chopped</td>
+         </tr>
+         <tr>
+           <td>½ cups Chopped Green Onions</td>
+           <td>½ cups Chopped Green Onions</td>
+         </tr>
+         <tr>
+           <td>2-½ cups Shredded Cheddar Cheese, Divided</td>
+           <td>2-½ cups Shredded Cheddar Cheese, Divided</td>
+         </tr>
+         <tr>
+           <td>10 whole Flour Tortillas</td>
+           <td>10 whole Flour Tortillas</td>
+         </tr>
+         <tr>
+           <td>2 cups Half-and-half</td>
+           <td>2 cups Half-and-half</td>
+         </tr>
+         <tr>
+           <td>6 whole Eggs</td>
+           <td>6 whole Eggs</td>
+         </tr>
+         <tr>
+           <td>1 Tablespoon Flour</td>
+           <td>1 Tablespoon Flour</td>
+         </tr>
+         <tr>
+           <td>Salsa and Sour Cream, To Serve</td>
+           <td>Salsa and Sour Cream, To Serve</td>
+         </tr>
+        </table>
+    </div>
+  </div>
+  <div id="footer">Thank you for visiting our site!</div>
+</div>
+
+</body>
+
+<!--color Scheme: 
+  red: #FF3842
+  blue:D9FFCC
+  orange:F07D4D
+  mint: E1F0DF
+  yellow:FFD999
+</body>
+</html>
