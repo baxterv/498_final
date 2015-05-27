@@ -67,71 +67,25 @@ body {
     <h1>This is a demonstration of Recipe Remix. Breakfast Enchiladas</h1>
   </div>
   
-  <div id="recipe">Recipe</div>
-  <div id="content">Here is the D3 visualization for our page.
-    <div id="update">Recipe Original to New
-        <table style="width:40%">
-          <tr>
-            <th>Original Recipe</th>
-            <th>Updated Recipe</th> 
-          </tr>
-          <tr>
-           <td> 1 lb bulk breakfast sausage</td>
-           <td> 
-            <select id="myselectionform">
-                <option value="RegularIngredient">Ingredient1</option>
-                <option value="replacement1">Replacement1</option>
-                <option value="replacement2">Replacement2</option>
-            </select>
-           <!-- Dropdown -->
-            <script>
-             var ingredient = "flour"
-              document.getElementById("myselectionform").onchange = function(){
-              d3.select("#mytype").attr("value", this.value);
-              filterType(this.value, ingredient);
-              }
-          </script>
-           </td>
-         </tr>
-        <tr>
-           <td>1 medium red pepper, chopped</td>
-           <td>1 medium red pepper, chopped</td>
-         </tr>
-         <tr>
-           <td>1 small onion, chopped</td>
-           <td>1 small onion, chopped</td>
-         </tr>
-         <tr>
-           <td>½ cups Chopped Green Onions</td>
-           <td>½ cups Chopped Green Onions</td>
-         </tr>
-         <tr>
-           <td>2-½ cups Shredded Cheddar Cheese, Divided</td>
-           <td>2-½ cups Shredded Cheddar Cheese, Divided</td>
-         </tr>
-         <tr>
-           <td>10 whole Flour Tortillas</td>
-           <td>10 whole Flour Tortillas</td>
-         </tr>
-         <tr>
-           <td>2 cups Half-and-half</td>
-           <td>2 cups Half-and-half</td>
-         </tr>
-         <tr>
-           <td>6 whole Eggs</td>
-           <td>6 whole Eggs</td>
-         </tr>
-         <tr>
-           <td>1 Tablespoon Flour</td>
-           <td>1 Tablespoon Flour</td>
-         </tr>
-         <tr>
-           <td>Salsa and Sour Cream, To Serve</td>
-           <td>Salsa and Sour Cream, To Serve</td>
-         </tr>
-        </table>
-    </div>
+  <div id="recipe"></div>
+ 
+  <div id="content"><h1>Cookie Recipe</h1>
+     <select id="myselectionform">
+      <option value="RegularIngredient">butter</option>
+      <option value="replacement1">mashed banana</option>
+      <option value="replacement2">avocado puree</option>
+      <option value="replacement3">3/4 pureed prunes with 1/4 water</option>
+    </select>
+    <!-- Dropdown -->
+    <script>
+      var ingredient = "flour"
+      document.getElementById("myselectionform").onchange = function(){
+        d3.select("#mytype").attr("value", this.value);
+        filterType(this.value, ingredient);
+      }
+    </script>          
   </div>
+
   <div id="footer">Thank you for visiting our site!</div>
 </div>
 
