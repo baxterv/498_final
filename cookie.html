@@ -70,15 +70,16 @@ body {
   <div id="recipe"></div>
  
   <div id="content"><h1>Cookie Recipe</h1>
+     <!-- Butter -->
      <select id="myselectionform">
       <option value="RegularIngredient">butter</option>
-      <option value="replacement1">mashed banana</option>
-      <option value="replacement2">avocado puree</option>
-      <option value="replacement3">3/4 pureed prunes with 1/4 water</option>
+      <option value="mashed banana">mashed banana</option>
+      <option value="avocado puree">avocado puree</option>
+      <option value="3/4 pureed prunes with 1/4 water">3/4 pureed prunes with 1/4 water</option>
     </select>
     <!-- Dropdown -->
     <script>
-      var ingredient = "butter"
+      var ingredient = "0"
       document.getElementById("myselectionform").onchange = function(){
         d3.select("#mytype").attr("value", this.value);
         filterType(this.value, ingredient);

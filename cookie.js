@@ -1,6 +1,7 @@
 var calories;
+//calories, carbs, fat, sugar, protein
 var nutritionFacts;
-var currIngredients;
+var currIngredients = ["butter"];
 var servings = 24;
 var dataset;
 
@@ -8,10 +9,10 @@ var dataset;
 
 d3.csv("cookie.csv", function(error, cookie) {
   if(error) return console.warn(error);
-  fastfood.forEach(function(d) {
+  cookie.forEach(function(d) {
   });
   dataset = cookie;
-  drawvis(cookie);
+  //drawvis(cookie);
 });
 
 //BAR CHART CODE
@@ -84,8 +85,11 @@ d3.csv("cookie.csv", function(error, cookie) {
 
 // END copied code
 
-function filterType(mytype) {
+function filterType(mytype, index) {
   newIngredient = mytype;
+  currIngredients[index] = mytype;
+  console.log(currIngredients);
+  console.log(function(mytype) { return mytype.calories;});
   
 }
 
@@ -95,16 +99,16 @@ function filterType(mytype) {
 
 // on dropdown interaction, recalculate ingredients and
 // nutrition facts
-function onDropDown {
+// function onDropDown {
 
-get all dropdown current values
-re-write currIngredients
-set nutitionFacts = 0
-for each ingredient in currIngredients
-	nutritionFacts[0] += ingredient.protein
-	nutritionFacts[1] += ingredient.fat
-	nutritionFacts[2] += ingredient.sugar
-	nutritionFacts[3] += ingredient.carbs
+// get all dropdown current values
+// re-write currIngredients
+// set nutitionFacts = 0
+// for each ingredient in currIngredients
+// 	nutritionFacts[0] += ingredient.protein
+// 	nutritionFacts[1] += ingredient.fat
+// 	nutritionFacts[2] += ingredient.sugar
+// 	nutritionFacts[3] += ingredient.carbs
 
-redraw bars(nutiritionFacts/servings)
-}
+// redraw bars(nutiritionFacts/servings)
+// }
