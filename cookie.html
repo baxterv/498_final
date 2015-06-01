@@ -59,25 +59,75 @@ body {
 </head>
 
 <body>
+
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="cookie.js"></script>
 
 <div id="layout">
   <div id="header">
-    <h1>This is a demonstration of Recipe Remix. Breakfast Enchiladas</h1>
+    <h1>This is a demonstration of Recipe Remix. Chocolate Chip Cookies</h1>
   </div>
   
   <div id="recipe"></div>
  
   <div id="content"><h1>Cookie Recipe</h1>
      <!-- Butter -->
+     3/4 cup
      <select id="myselectionform">
       <option value="RegularIngredient">butter</option>
       <option value="mashed banana">mashed banana</option>
       <option value="avocado puree">avocado puree</option>
       <option value="3/4 pureed prunes with 1/4 water">3/4 pureed prunes with 1/4 water</option>
     </select>
-    <!-- Dropdown -->
+    <!-- Dropdown --><br>
+
+    <!-- Brown Sugar -->
+     3/4 cup
+     <select id="myselectionform">
+      <option value="RegularIngredient">brown sugar</option>
+      <option value="halfnhalf">1/2 agave nectar with 1/2 brown sugar</option>
+    </select>
+    <!-- Dropdown --><br>
+
+    <!-- Sugar -->
+     1/2 cup
+     <select id="myselectionform">
+      <option value="RegularIngredient">sugar</option>
+      <option value="unsweetened applesauce">unsweetened applesauce</option>
+    </select>
+    <!-- Dropdown --><br>
+    
+    <!-- Egg -->
+     <select id="myselectionform">
+      <option value="RegularIngredient">1 whole egg</option>
+      <option value="mashed banana">2 egg whites</option>
+    </select>
+    <!-- Dropdown --><br>
+
+    2 tsp. vanilla extract <br>
+    2 tsp. cornstarch <br>
+    1 tsp. baking soda <br>
+    0.5 tsp salt <br>
+
+    <!-- Flour -->
+     2 cup
+     <select id="myselectionform">
+      <option value="RegularIngredient">all-purpose flour</option>
+      <option value="mashed banana">pureed black beans</option>
+      <option value="avocado puree">whole wheat flour</option>
+      <option value="3/4 pureed prunes with 1/4 water">coconut flour</option>
+    </select>
+    <!-- Dropdown --><br>
+
+    <!-- Chocolate Chips -->
+     1 1/2 cups
+     <select id="myselectionform">
+      <option value="RegularIngredient">semi-sweet chocolate chips</option>
+      <option value="mashed banana">raisins</option>
+      <option value="avocado puree">cacoa nibs</option>
+    </select>
+    <!-- Dropdown --><br>
+
     <script>
       var ingredient = "0"
       document.getElementById("myselectionform").onchange = function(){
@@ -85,7 +135,20 @@ body {
         filterType(this.value, ingredient);
       }
     </script>          
+ 
+   <div id="chart"></div>
+    <script src="http://d3js.org/d3.v2.min.js"></script>
+        <script id="csv" type="text/csv">Nutrient,Grams
+Protien,5
+Fat,6
+Sugar,15
+Carbs,12
+Calories,112</script>
+    <script>renderChart();</script>
   </div>
+
+  </div>
+
 
   <div id="footer">Thank you for visiting our site!</div>
 </div>
