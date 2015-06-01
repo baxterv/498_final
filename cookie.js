@@ -26,10 +26,12 @@ var yScale = d3.scale.ordinal().domain(d3.range(0, data.length)).rangeBands([0, 
 var y = function(d, i) { return yScale(i); };
 var yText = function(d, i) { return y(d, i) + yScale.rangeBand() / 2; };
 var x = d3.scale.linear().domain([0, d3.max(data, barValue)]).range([0, maxBarWidth]);
+
 // svg container element
 var chart = d3.select('#chart').append("svg")
   .attr('width', maxBarWidth + barLabelWidth + valueLabelWidth)
-  .attr('height', gridLabelHeight + gridChartOffset + data.length * barHeight);
+  .attr('height', gridLabelHeight + gridChartOffset + data.length * barHeight + 1000);
+
 // grid line labels
 var gridContainer = chart.append('g')
   .attr('transform', 'translate(' + barLabelWidth + ',' + gridLabelHeight + ')'); 
@@ -63,7 +65,7 @@ barsContainer.selectAll("rect").data(data).enter().append("rect")
   .attr('height', yScale.rangeBand())
   .attr('width', function(d) { return x(barValue(d)); })
   .attr('stroke', 'white')
-  .attr('fill', 'steelblue');
+  .attr('fill', '#d62728');
 // bar value labels
 barsContainer.selectAll("text").data(data).enter().append("text")
   .attr("x", function(d) { return x(barValue(d)); })
@@ -80,15 +82,25 @@ barsContainer.append("line")
   .attr("y2", yScale.rangeExtent()[1] + gridChartOffset)
   .style("stroke", "#000");
 
-}
+
 
 
 
 // END copied code
 
 
-
-
+ //Draw the Circle
+ var circle = barsContainer.append("circle")
+                          .attr("cx", 50)
+                          .attr("cy", 150)
+                         .attr("r", 40)
+                         .style("stroke", "white")
+                         .style("fill", "#FFD999");
+              barsContainer.append("text")
+              .attr("dy", 150)
+              .attr("dx", -50)
+              .text("Calories      4065");
+}
 
 
 

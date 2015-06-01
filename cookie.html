@@ -7,38 +7,19 @@
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <style>
 /*style*/
-body {
-    background-color: #F07D4D;
+body{
+    font-family: 'Goudy Old Style', Garamond, 'Big Caslon', 'Times New Roman', serif;
 
-  .bar {
-    fill: steelblue;
-  }
-
-  .bar:hover {
-    fill: brown;
-  }
-
-  .axis {
-    font: 10px sans-serif;
-  }
-
-  .axis path,
-  .axis line {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
-  }
-
-  .x.axis path {
-    display: none;
-  }
 }
-
 #content {
-  margin-left:  200px;
+  margin-left: 10px;
   background-color: #D9FFCC;
-  background-size: 100% 100%;
-  height:150%;
+  background-size:  50px 50px;
+  height: 70%;
+  float: right;
+  overflow:hidden;
+  padding-left: 20px;
+  border: 5px dashed #ccc;
 }
 #recipe {
   background-image: url("images/cookieBackground.jpg");
@@ -47,14 +28,47 @@ body {
   float: left;
   width: 50%;
   height:150%;
+  padding: 5px;
+  overflow:hidden;
 }
 #footer {
+  font-size: 20px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 500;
+  line-height: 26.3999996185303px;
+  color: white;
+  text-align: center ;
+  background-color: #FF3842;
   clear: both ;
 }
 #header {
+  font-size: 15px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 500;
+  line-height: 26.3999996185303px;
+  color: white;
   text-align: center ;
+  background-color: #FF3842;
+  padding: 2px;
 }
+#chart{
+  padding-top: 50px;
 }
+#btnhome {  
+  margin: 10px;
+  float: left;
+  color: #585858;
+  font-size: 20px;
+  background: #e1f0df;
+  padding: 10px 20px 10px 20px;
+
+}
+#btnhome:hover {
+  background: #ffffff;
+}
+
 </style>
 </head>
 
@@ -65,12 +79,13 @@ body {
 
 <div id="layout">
   <div id="header">
+    <a href="index.html"><button id="btnhome">Home</button></a>
     <h1>This is a demonstration of Recipe Remix. Chocolate Chip Cookies</h1>
   </div>
   
   <div id="recipe"></div>
  
-  <div id="content"><h1>Cookie Recipe</h1>
+  <div id="content"><h1>Remix This Cookie Recipe</h1>
      <!-- Butter -->
      3/4 cup
      <select id="myselectionform">
@@ -137,14 +152,14 @@ body {
     </script>          
  
    <div id="chart"></div>
+
     <script src="http://d3js.org/d3.v2.min.js"></script>
         <script id="csv" type="text/csv">Nutrient,Grams
-Protein,42.65
-Fat,82.4
-Sugar,295.95
-Carbs,506.6
-
-</script>
+          Protein,42.65
+          Fat,82.4
+          Sugar,295.95
+          Carbs,506.6
+        </script>
     <script>renderChart();</script>
   </div>
    
@@ -156,7 +171,7 @@ Carbs,506.6
   </div>
 
 
-  <div id="footer">Thank you for visiting our site!</div>
+  <div id="footer">Thank you for visiting our demonstration!</div>
 </div>
 
 </body>
