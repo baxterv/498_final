@@ -1,13 +1,31 @@
-var calories;
-var nutritionFacts;
-var currIngredients;
+var calories = 0;
+var protein = 0;
+var carbs = 0;
+var fat = 0;
+var sugar = 0;
+var nutritionFacts = [calories, protein/servings, carbs/servings, fat/servings, sugar/servings];
+
+var currIngredients = 
+  ["butter", "brown sugar", "granulated sugar", "whole egg", 
+      "vanilla extract", "cornstarch", "baking soda", "salt", 
+          "all-purpose flour", "semi-sweet chocolate chips"];
 var servings = 24;
-var dataset;
+var allfacts;
 
 // copied code
 
+d3.csv("cookie.csv", function(error, cookie) {
+  if (error) return console.warn(error);
+    cookie.forEach(function(d) {
+  });
+  allfacts = cookie;
+  renderChart();
+});
+
 function renderChart() {
 
+
+//allfacts = d3.csv.parse(d3.select('#nfacts').text());
 var data = d3.csv.parse(d3.select('#csv').text());
 var valueLabelWidth = 40; // space reserved for value labels (right)
 var barHeight = 20; // height of one bar
@@ -30,7 +48,7 @@ var x = d3.scale.linear().domain([0, d3.max(data, barValue)]).range([0, maxBarWi
 // svg container element
 var chart = d3.select('#chart').append("svg")
   .attr('width', maxBarWidth + barLabelWidth + valueLabelWidth)
-  .attr('height', gridLabelHeight + gridChartOffset + data.length * barHeight + 1000);
+  .attr('height', gridLabelHeight + gridChartOffset + 4 * barHeight + 1000);
 
 // grid line labels
 var gridContainer = chart.append('g')
@@ -82,40 +100,56 @@ barsContainer.append("line")
   .attr("y2", yScale.rangeExtent()[1] + gridChartOffset)
   .style("stroke", "#000");
 
+//Draw the Circle
+var circle = barsContainer.append("circle")
+                        .attr("cx", 50)
+                        .attr("cy", 150)
+                       .attr("r", 40)
+                       .style("stroke", "white")
+                       .style("fill", "#FFD999");
+            barsContainer.append("text")
+            .attr("dy", 150)
+            .attr("dx", -50)
+            .text("Calories      4065");
+}
+function filterType(ingredient, index) {
+  currIngredients[index] = ingredient;
+  //reset vars
+  calories = 0;
+  protein = 0;
+  carbs = 0;
+  fat = 0;
+  sugar = 0;
 
+  console.log(calories);
+  var j = 0;
+  for (j = 0, len = currIngredients.length; j < len; ++j) {
+    console.log(currIngredients[j]);
+    allfacts.filter(function(d,i) {
+      if(d["item"] == currIngredients[j]) {
+        calories = calories + (+d.calories);
+        protein = protein + (+d.protein);
+        carbs = carbs + (+d.carbs);
+        fat = fat + (+d.fat);
+        sugar = sugar + (+d.sugar);
+        //console.log(sugar/servings);
+        return;
+      }
+    // calories = calories + facts["calories"];
+    
+    });
+    
 
+  }
+console.log(calories/servings);
+console.log(protein/servings);
+console.log(carbs/servings);
+console.log(fat/servings);
+  console.log(sugar/servings);
+  //console.log(nutritionFacts);
+}
 
 
 // END copied code
 
 
- //Draw the Circle
- var circle = barsContainer.append("circle")
-                          .attr("cx", 50)
-                          .attr("cy", 150)
-                         .attr("r", 40)
-                         .style("stroke", "white")
-                         .style("fill", "#FFD999");
-              barsContainer.append("text")
-              .attr("dy", 150)
-              .attr("dx", -50)
-              .text("Calories      4065");
-}
-
-
-
-// on dropdown interaction, recalculate ingredients and
-// nutrition facts
-// function onDropDown {
-
-// get all dropdown current values
-// re-write currIngredients
-// set nutitionFacts = 0
-// for each ingredient in currIngredients
-// 	nutritionFacts[0] += ingredient.protein
-// 	nutritionFacts[1] += ingredient.fat
-// 	nutritionFacts[2] += ingredient.sugar
-// 	nutritionFacts[3] += ingredient.carbs
-
-// redraw bars(nutiritionFacts/servings)
-// }

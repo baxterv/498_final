@@ -85,39 +85,66 @@ body{
   
   <div id="recipe"></div>
  
+<!-- DROPDOWNS -->
+
   <div id="content"><h1>Remix This Cookie Recipe</h1>
      <!-- Butter -->
      3/4 cup
-     <select id="myselectionform">
-      <option value="RegularIngredient">butter</option>
-      <option value="mashed banana">mashed banana</option>
+     <select id="myselectionform_butter">
+      <option value="butter">butter</option>
+      <option value="mashed bananas">mashed banana</option>
       <option value="avocado puree">avocado puree</option>
       <option value="3/4 pureed prunes with 1/4 water">3/4 pureed prunes with 1/4 water</option>
     </select>
-    <!-- Dropdown --><br>
+    <script>
+      document.getElementById("myselectionform_butter").onchange = function(){
+        d3.select("#mytype").attr("value", this.value);
+        filterType(this.value, 0);
+      }
+    </script> 
+
+    <br>
 
     <!-- Brown Sugar -->
      3/4 cup
-     <select id="myselectionform">
-      <option value="RegularIngredient">brown sugar</option>
-      <option value="halfnhalf">1/2 agave nectar with 1/2 brown sugar</option>
+     <select id="myselectionform_brsugar">
+      <option value="brown sugar">brown sugar</option>
+      <option value="1/2 agave nectar, 1/2 brown sugar">1/2 agave nectar with 1/2 brown sugar</option>
     </select>
-    <!-- Dropdown --><br>
+    <script>
+      document.getElementById("myselectionform_brsugar").onchange = function(){
+        d3.select("#mytype").attr("value", this.value);
+        filterType(this.value, 1);
+      }
+    </script> 
+    <br>
 
     <!-- Sugar -->
      1/2 cup
-     <select id="myselectionform">
-      <option value="RegularIngredient">sugar</option>
-      <option value="unsweetened applesauce">unsweetened applesauce</option>
+     <select id="myselectionform_sugar">
+      <option value="granulated sugar">granulated sugar</option>
+      <option value="unsweetened apple sauce">unsweetened applesauce</option>
     </select>
-    <!-- Dropdown --><br>
+    <script>
+      document.getElementById("myselectionform_sugar").onchange = function(){
+        d3.select("#mytype").attr("value", this.value);
+        filterType(this.value, 2);
+      }
+    </script> 
+    <br>
     
     <!-- Egg -->
-     <select id="myselectionform">
-      <option value="RegularIngredient">1 whole egg</option>
-      <option value="mashed banana">2 egg whites</option>
+     <select id="myselectionform_egg">
+      <option value="whole egg">1 whole egg</option>
+      <option value="egg white">2 egg whites</option>
     </select>
-    <!-- Dropdown --><br>
+    <script>
+      document.getElementById("myselectionform_egg").onchange = function(){
+        d3.select("#mytype").attr("value", this.value);
+        filterType(this.value, 3);
+      }
+    </script> 
+    <br>
 
     2 tsp. vanilla extract <br>
     2 tsp. cornstarch <br>
@@ -125,33 +152,37 @@ body{
     0.5 tsp salt <br>
 
     <!-- Flour -->
-     2 cup
-     <select id="myselectionform">
-      <option value="RegularIngredient">all-purpose flour</option>
-      <option value="mashed banana">pureed black beans</option>
-      <option value="avocado puree">whole wheat flour</option>
-      <option value="3/4 pureed prunes with 1/4 water">coconut flour</option>
+     2 cups
+     <select id="myselectionform_flour">
+      <option value="all-purpose flour">all-purpose flour</option>
+      <option value="pureed black bean">pureed black beans</option>
+      <option value="whole wheat flour">whole wheat flour</option>
+      <option value="coconut flour">coconut flour</option>
     </select>
-    <!-- Dropdown --><br>
+    <script>
+      document.getElementById("myselectionform_flour").onchange = function(){
+        d3.select("#mytype").attr("value", this.value);
+        filterType(this.value, 8);
+      }
+    </script> 
+    <br>
 
     <!-- Chocolate Chips -->
      1 1/2 cups
-     <select id="myselectionform">
-      <option value="RegularIngredient">semi-sweet chocolate chips</option>
-      <option value="mashed banana">raisins</option>
-      <option value="avocado puree">cacoa nibs</option>
+     <select id="myselectionform_chips">
+      <option value="semi-sweet chocolate chips">semi-sweet chocolate chips</option>
+      <option value="raisin">raisins</option>
+      <option value="cacoa nibs">cacoa nibs</option>
     </select>
-    <!-- Dropdown --><br>
-
     <script>
-      var ingredient = "0"
-      document.getElementById("myselectionform").onchange = function(){
+      document.getElementById("myselectionform_chips").onchange = function(){
         d3.select("#mytype").attr("value", this.value);
-        filterType(this.value, ingredient);
+        filterType(this.value, 9);
       }
-    </script>          
- 
-   <div id="chart"></div>
+    </script> 
+
+    <br>          
+    <div id="chart"></div>
 
     <script src="http://d3js.org/d3.v2.min.js"></script>
         <script id="csv" type="text/csv">Nutrient,Grams
@@ -160,18 +191,44 @@ body{
           Sugar,295.95
           Carbs,506.6
         </script>
-    <script>renderChart();</script>
+        <script id="nfacts" type="text/csv">
+          quantity,size,item,calories,protein,sugar,carbs,fat
+          0.75,cup,butter,1220.25,0,0,0,138
+          0.75,cup,mashed bananas,150,1.84,20.64,38.54,0.55
+          0.75,cup,avocado puree,276,3.45,1.14,14.7,25.29
+          0.75,cup,3/4 pureed prunes 1/4 water,324,4.5,49.5,81,0
+          0.75,cup,brown sugar,413.25,0.15,105.75,106.5,0
+          0.75,cup,"1/2 agave nectar, 1/2 brown sugar",558,0,141,144,0
+          0.25,cup,granulated sugar,193.25,0,50,50,0
+          0.25,cup,unsweetened apple sauce,25.75,0.1,5.75,7,0.05
+          1,egg,whole egg,78,6,0.6,0.6,5
+          2,egg white,egg white,34,7.2,0.4,0.4,0.02
+          2,tsp,vanilla extract,24,0,1,0.5,0
+          2,tsp,cornstarch,20,0,0,0,0
+          1,tsp,baking soda,0,0,0,0,0
+          0.5,tsp,salt,0,0,0,0,0
+          2,cup,all-purpose flour,910,26,0.6,190,2.4
+          2,cup,pureed black bean,454,30,0,82,2
+          2,cup,whole wheat flour,816,32,1,112,6
+          2,cup,coconut flour,1944,64.8,32.4,259.2,64.8
+          1.5,cup,semi-sweet chocolate chips,1207,10.5,138,159,75
+          1.5,cup,raisin,651,6.6,129,172.5,1
+          1.5,cup,cacoa nibs,1020,24,0,54,96
+        </script>
+
   </div>
    
    <div id="circle"></div>
     <script src="http://d3js.org/d3.v2.min.js"></script>
-        <script id="csv" type="text/csv">
-    <script>renderChart();</script>
+        <script id="csv" type="text/csv"></script>
+ 
+ <script>renderChart();</script>
   </div>
   </div>
 
 
-  <div id="footer">Thank you for visiting our demonstration!</div>
+  <div id="footer">Thank you for visiting our demonstration!
+  </div>
 </div>
 
 </body>
