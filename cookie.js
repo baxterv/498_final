@@ -3,6 +3,7 @@ var protein = 0;
 var carbs = 0;
 var fat = 0;
 var sugar = 0;
+//when I console.log this, I just get [NaN, NaN etc]
 var nutritionFacts = [calories, protein/servings, carbs/servings, fat/servings, sugar/servings];
 
 var currIngredients = 
