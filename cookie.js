@@ -1,8 +1,13 @@
-var calories = 0;
+var calories = 4065;
 var protein = 0;
 var carbs = 0;
 var fat = 0;
 var sugar = 0;
+// var data = Nutrient,Grams
+//           Protein,42.65
+//           Fat,82.4
+//           Sugar,295.95
+//           Carbs,506.6;
 //when I console.log this, I just get [NaN, NaN etc]
 var nutritionFacts = [calories, protein/servings, carbs/servings, fat/servings, sugar/servings];
 
@@ -14,19 +19,19 @@ var servings = 24;
 var allfacts;
 
 // copied code
-
+// load nutrition facts
 d3.csv("cookie.csv", function(error, cookie) {
   if (error) return console.warn(error);
     cookie.forEach(function(d) {
   });
   allfacts = cookie;
   renderChart();
+  drawvis();
 });
 
+// make chart
 function renderChart() {
 
-
-//allfacts = d3.csv.parse(d3.select('#nfacts').text());
 var data = d3.csv.parse(d3.select('#csv').text());
 var valueLabelWidth = 40; // space reserved for value labels (right)
 var barHeight = 20; // height of one bar
@@ -44,7 +49,8 @@ var barValue = function(d) { return parseFloat(d['Grams']); };
 var yScale = d3.scale.ordinal().domain(d3.range(0, data.length)).rangeBands([0, data.length * barHeight]);
 var y = function(d, i) { return yScale(i); };
 var yText = function(d, i) { return y(d, i) + yScale.rangeBand() / 2; };
-var x = d3.scale.linear().domain([0, d3.max(data, barValue)]).range([0, maxBarWidth]);
+//var x = d3.scale.linear().domain([0, d3.max(data, barValue)]).range([0, maxBarWidth]);
+var x = d3.scale.linear().domain([0, 500]).range([0, maxBarWidth]);
 
 // svg container element
 var chart = d3.select('#chart').append("svg")
@@ -84,7 +90,7 @@ barsContainer.selectAll("rect").data(data).enter().append("rect")
   .attr('height', yScale.rangeBand())
   .attr('width', function(d) { return x(barValue(d)); })
   .attr('stroke', 'white')
-  .attr('fill', '#d62728');
+  .attr('fill', '#FF3842');
 // bar value labels
 barsContainer.selectAll("text").data(data).enter().append("text")
   .attr("x", function(d) { return x(barValue(d)); })
@@ -103,16 +109,35 @@ barsContainer.append("line")
 
 //Draw the Circle
 var circle = barsContainer.append("circle")
-                        .attr("cx", 50)
-                        .attr("cy", 150)
-                       .attr("r", 40)
-                       .style("stroke", "white")
-                       .style("fill", "#FFD999");
-            barsContainer.append("text")
-            .attr("dy", 150)
-            .attr("dx", -50)
-            .text("Calories      4065");
+    .attr("cx", 50)
+    .attr("cy", 150)
+    .attr("r", 40)
+    .style("stroke", "white")
+    .style("fill", "#FFD999");
+barsContainer.append("text")
+.attr("dy", 150)
+.attr("dx", -50)
+.text("Calories      " + calories);
+
 }
+
+function drawvis() {
+  var bars = svg.selectAll('g')
+    .data(data);
+    bars
+    .enter()
+    .append('g')
+      .attr('transform', 'translate(' + barLabelWidth + ',' + (gridLabelHeight + gridChartOffset) + ')'); 
+barsContainer.selectAll("rect").data(data).enter().append("rect")
+  .attr('y', y)
+  .attr('height', yScale.rangeBand())
+  .attr('width', function(d) { return x(barValue(d)); })
+  .attr('stroke', 'white')
+  .attr('fill', '#d62728');
+
+}
+
+// on dropdown interaction
 function filterType(ingredient, index) {
   currIngredients[index] = ingredient;
   //reset vars
@@ -133,20 +158,15 @@ function filterType(ingredient, index) {
         carbs = carbs + (+d.carbs);
         fat = fat + (+d.fat);
         sugar = sugar + (+d.sugar);
-        //console.log(sugar/servings);
         return;
-      }
-    // calories = calories + facts["calories"];
-    
+      }    
     });
-    
-
   }
 console.log(calories/servings);
 console.log(protein/servings);
 console.log(carbs/servings);
 console.log(fat/servings);
-  console.log(sugar/servings);
+console.log(sugar/servings);
   //console.log(nutritionFacts);
 }
 
